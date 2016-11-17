@@ -1,0 +1,33 @@
+<h1>Add an Appointment</h1>
+<hr />
+
+<%= form_for Appointment.new do |f| %>
+  <div class="form-group">
+  <%= f.label 'Doctor' %>
+  <%= f.select :doctor_id, options_for_select(@doctors),{}, {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
+  <%= f.label 'Patient' %>
+  <%= f.select :patient_id, options_for_select(@patients),{}, {class: 'form-control'} %>
+  </div>
+  <div class="form-group">
+  <%= f.label 'Date' %>
+  <%= f.date_field :date, required: true, placeholder: 'Date' %>
+  </div>
+  <div class="form-group">
+  <%= f.label 'Time' %>
+  <%= f.text_field :time, required: true, placeholder: 'Time', class: 'form-control', type: 'time' %>
+  </div>
+  <div class="form-group">
+  <%= f.submit nil, class: 'btn btn-warning' %>
+<% end %>
+</div>
+<br /><br />
+
+
+<%= link_to 'View Doctors', doctors_path, class: 'btn btn-primary' %>
+<%= link_to 'View Patients', patients_path, class: 'btn btn-info' %>
+</div>
+
+
+

@@ -1,0 +1,45 @@
+<h1>Schedule for <%= @doctor.name %> </h1>
+
+
+<% unless @doctor.specialty.empty? %>
+  <h4>Specialty: <i><%= @doctor.specialty %></i></h4>
+  <h4>Accepts Insurance: <i><%= @doctor.insurance %></i></h4>
+<% end %>
+
+<div>
+<hr />
+<% if @doctor.patients.any? %>
+  <h3>Appointments</h3>
+  <div class="list group">
+    <% @doctor.appointments.each do |da| %>
+      <a href="#" class="list-group-item list-group-item-action active">
+        <h4 class='list-group-item-heading"'><%= da.patient.name %></h4>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+        <h4 class="list-group-item-heading">Date: </h4>
+        <p class='list-group-item-text'><%= da.date.strftime("%b %e, %Y") %></p>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+        <h4 class="list-group-item-heading">Time: </h4>
+        <p class='list-group-item-text'><%= da.time.strftime("%l: %M %p") %></p>
+        </a>
+        <%= link_to 'Remove', appointment_path(da), method: :delete, class: 'list-group-item btn btn-warning' %>
+        <br />
+    <% end %>
+  </div>
+<% else %>
+  <h5>No appointments found!</h5>
+<% end %>
+</div>
+
+<br />
+
+<br />
+<div>
+<%= link_to 'Add Another Appointment', new_appointment_path, class: "btn btn-warning" %>
+<%= link_to 'Edit Doctor Info', edit_doctor_path(@doctor),class: 'btn btn-primary' %>
+</div>
+<br /><br />
+<div>
+<%= link_to 'View All Doctors', doctors_path, class: 'btn btn-info' %>
+</div>
